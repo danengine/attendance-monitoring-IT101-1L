@@ -265,57 +265,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		try {
-			String^ studentId = textBox1->Text;
-
-			String^ url = "https://api.danengine.tech/v1/student/project?studentId=" + studentId;
-
-			System::Net::HttpWebRequest^ request = (System::Net::HttpWebRequest^)System::Net::WebRequest::Create(url);
-			request->Method = "GET";
-
-			System::Net::HttpWebResponse^ response = (System::Net::HttpWebResponse^)request->GetResponse();
-			System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(response->GetResponseStream());
-			String^ jsonResponse = reader->ReadToEnd();
-
-			reader->Close();
-			response->Close();
-
-			String^ studentIdStr = ExtractValue(jsonResponse, "\"id\":\"", "\"");
-			String^ studentName = ExtractValue(jsonResponse, "\"name\":\"", "\"");
-			String^ studentLevel = ExtractValue(jsonResponse, "\"level\":\"", "\"");
-			String^ studentProgram = ExtractValue(jsonResponse, "\"program\":\"", "\"");
-			String^ studentEmail = ExtractValue(jsonResponse, "\"email\":\"", "\"");
-
-			textBox2->Text = studentName;
-			textBox3->Text = studentProgram;
-			textBox4->Text = studentLevel;
-			textBox5->Text = studentEmail;
-		}
-		catch (Exception^ ex) {
-			MessageBox::Show("Student Not Found", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
 	}
-
-		   String^ ExtractValue(String^ source, String^ startDelimiter, String^ endDelimiter) {
-			   // Remove all unnecessary spaces to prevent mismatches
-			   source = source->Replace(" ", "")->Replace("\n", "")->Replace("\r", "");
-
-			   int startIndex = source->IndexOf(startDelimiter);
-			   if (startIndex == -1) {
-				   MessageBox::Show("Delimiter not found: " + startDelimiter, "Debug", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				   return "N/A"; // Not found
-			   }
-
-			   startIndex += startDelimiter->Length;
-			   int endIndex = source->IndexOf(endDelimiter, startIndex);
-
-			   if (endIndex == -1) {
-				   MessageBox::Show("End delimiter not found: " + endDelimiter, "Debug", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				   return "N/A"; // Not found
-			   }
-
-			   return source->Substring(startIndex, endIndex - startIndex);
-		   }
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
