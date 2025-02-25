@@ -1,0 +1,3 @@
+D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Release\Attendancing Monitoring.vcxproj.AssemblyReference.cache
+D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Release\Attendancing_Monitoring.Form1.resources
+D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Release\Attendancing Monitoring.vcxproj.GenerateResource.cache

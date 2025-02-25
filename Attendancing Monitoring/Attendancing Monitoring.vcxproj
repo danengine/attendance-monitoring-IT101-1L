@@ -82,6 +82,9 @@
     <OutDir>$(SolutionDir)Build</OutDir>
     <TargetName>attendance_$(PlatformTarget)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>attendance_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -158,6 +161,7 @@
   <ItemGroup>
     <Image Include="$this.Icon.ico" />
     <Image Include="app.ico" />
+    <Image Include="pictureBox1.Image.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

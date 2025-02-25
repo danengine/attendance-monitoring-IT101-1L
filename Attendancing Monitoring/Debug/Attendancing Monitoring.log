@@ -1,4 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   CppCLR_WinFormsProject.cpp
   AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Attendancing Monitoring.vcxproj -> D:\Projects\IT\Attendancing Monitoring\Build\attendance_x86.exe
+  Attendancing Monitoring.vcxproj -> D:\Projects\attendance-monitoring-IT101-1L\Build\attendance_x86.exe

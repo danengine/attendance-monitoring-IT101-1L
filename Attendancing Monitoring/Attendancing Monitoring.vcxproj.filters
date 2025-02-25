@@ -51,5 +51,8 @@
     <Image Include="$this.Icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="pictureBox1.Image.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

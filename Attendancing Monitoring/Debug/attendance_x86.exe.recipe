@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Projects\IT\Attendancing Monitoring\Build\attendance_x86.exe</FullPath>
+      <FullPath>D:\Projects\attendance-monitoring-IT101-1L\Build\attendance_x86.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
