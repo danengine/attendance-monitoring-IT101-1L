@@ -18,9 +18,14 @@ namespace CppCLRWinFormsProject {
 		Form1(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			this->HelpButtonClicked += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::Form1_HelpButtonClicked);
+			try {
+				this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
+			}
+			catch (Exception^ ex) {
+                MessageBox::Show("Error loading image: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                this->Close();
+			}
 		}
 
 	protected:
@@ -45,12 +50,33 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ textBox4;
-	private: System::Windows::Forms::ListView^ listView1;
+
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: bool dragging = false;
 	private: System::Drawing::Point offset;
-	private: System::Windows::Forms::Button^ button2;
+
+	private: System::Windows::Forms::DataGridView^ studentList;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ studentid;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
+	private: System::Windows::Forms::Button^ markattendance;
+	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::Label^ label6;
+
+
+
+
+	private: System::ComponentModel::IContainer^ components;
+
+
+
+
+
+
+
+
 
 	protected:
 
@@ -64,7 +90,7 @@ namespace CppCLRWinFormsProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -73,9 +99,14 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->studentList = (gcnew System::Windows::Forms::DataGridView());
+			this->studentid = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -87,8 +118,11 @@ namespace CppCLRWinFormsProject {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->markattendance = (gcnew System::Windows::Forms::Button());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,34 +131,69 @@ namespace CppCLRWinFormsProject {
 			this->button1->Location = System::Drawing::Point(753, 119);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(192, 25);
-			this->button1->TabIndex = 0;
+			this->button1->TabIndex = 2;
 			this->button1->Text = L"Auto Fill";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// panel1
 			// 
-			this->panel1->Controls->Add(this->listView1);
+			this->panel1->Controls->Add(this->studentList);
 			this->panel1->Location = System::Drawing::Point(12, 106);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(585, 393);
-			this->panel1->TabIndex = 1;
+			this->panel1->TabIndex = 12;
 			// 
-			// listView1
+			// studentList
 			// 
-			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(3, 3);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(579, 481);
-			this->listView1->TabIndex = 0;
-			this->listView1->UseCompatibleStateImageBehavior = false;
+			this->studentList->AllowUserToAddRows = false;
+			this->studentList->AllowUserToDeleteRows = false;
+			this->studentList->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->studentList->BackgroundColor = System::Drawing::Color::White;
+			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->studentList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->studentid,
+					this->name, this->Date, this->Time
+			});
+			this->studentList->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->studentList->Location = System::Drawing::Point(0, 0);
+			this->studentList->Name = L"studentList";
+			this->studentList->ReadOnly = true;
+			this->studentList->RowHeadersVisible = false;
+			this->studentList->Size = System::Drawing::Size(585, 393);
+			this->studentList->TabIndex = 0;
+			this->studentList->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellContentClick);
+			// 
+			// studentid
+			// 
+			this->studentid->HeaderText = L"Student ID";
+			this->studentid->Name = L"studentid";
+			this->studentid->ReadOnly = true;
+			// 
+			// name
+			// 
+			this->name->HeaderText = L"Name";
+			this->name->Name = L"name";
+			this->name->ReadOnly = true;
+			// 
+			// Date
+			// 
+			this->Date->HeaderText = L"Date";
+			this->Date->Name = L"Date";
+			this->Date->ReadOnly = true;
+			// 
+			// Time
+			// 
+			this->Time->HeaderText = L"Time";
+			this->Time->Name = L"Time";
+			this->Time->ReadOnly = true;
 			// 
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(611, 122);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(136, 20);
-			this->textBox1->TabIndex = 2;
+			this->textBox1->TabIndex = 1;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Form1::textBox1_TextChanged);
 			// 
 			// label1
@@ -138,14 +207,14 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(611, 174);
+			this->textBox2->Location = System::Drawing::Point(611, 166);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(334, 20);
-			this->textBox2->TabIndex = 4;
+			this->textBox2->TabIndex = 3;
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(611, 224);
+			this->textBox3->Location = System::Drawing::Point(612, 258);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(100, 20);
 			this->textBox3->TabIndex = 5;
@@ -153,7 +222,7 @@ namespace CppCLRWinFormsProject {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(608, 158);
+			this->label2->Location = System::Drawing::Point(608, 150);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(35, 13);
 			this->label2->TabIndex = 6;
@@ -163,7 +232,7 @@ namespace CppCLRWinFormsProject {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(608, 208);
+			this->label3->Location = System::Drawing::Point(609, 242);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(46, 13);
 			this->label3->TabIndex = 7;
@@ -172,16 +241,16 @@ namespace CppCLRWinFormsProject {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(826, 208);
+			this->label4->Location = System::Drawing::Point(609, 196);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(31, 13);
+			this->label4->Size = System::Drawing::Size(32, 13);
 			this->label4->TabIndex = 8;
-			this->label4->Text = L"email";
+			this->label4->Text = L"Email";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(718, 208);
+			this->label5->Location = System::Drawing::Point(719, 242);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(29, 13);
 			this->label5->TabIndex = 9;
@@ -189,50 +258,65 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(720, 224);
+			this->textBox4->Location = System::Drawing::Point(721, 258);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(100, 20);
-			this->textBox4->TabIndex = 10;
+			this->textBox4->TabIndex = 6;
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(829, 224);
+			this->textBox5->Location = System::Drawing::Point(611, 212);
 			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(100, 20);
-			this->textBox5->TabIndex = 11;
+			this->textBox5->Size = System::Drawing::Size(334, 20);
+			this->textBox5->TabIndex = 4;
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Arrow;
-			this->pictureBox1->ImageLocation = L"MCM.png";
-			this->pictureBox1->Location = System::Drawing::Point(12, 9);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(278, 91);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 12;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
-			this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseDown);
-			this->pictureBox1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseMove);
-			this->pictureBox1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseUp);
+            this->pictureBox1->ImageLocation = L"https://files.danengine.tech/attendance/mcm-ccis.png";
+            this->pictureBox1->Location = System::Drawing::Point(12, 9);
+            this->pictureBox1->Name = L"pictureBox1";
+            this->pictureBox1->Size = System::Drawing::Size(278, 91);
+            this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox1->TabIndex = 12;
+            this->pictureBox1->TabStop = false;
+            this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
-			// button2
+			// markattendance
 			// 
-			this->button2->BackColor = System::Drawing::Color::IndianRed;
-			this->button2->Location = System::Drawing::Point(916, 12);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(37, 34);
-			this->button2->TabIndex = 13;
-			this->button2->Text = L"X";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			this->markattendance->Location = System::Drawing::Point(827, 249);
+			this->markattendance->Name = L"markattendance";
+			this->markattendance->Size = System::Drawing::Size(118, 36);
+			this->markattendance->TabIndex = 7;
+			this->markattendance->Text = L"Mark Attendance";
+			this->markattendance->UseVisualStyleBackColor = true;
+			this->markattendance->Click += gcnew System::EventHandler(this, &Form1::markattendance_Click);
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(12, 522);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(175, 20);
+			this->textBox6->TabIndex = 15;
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &Form1::textBox6_TextChanged);
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(9, 506);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(81, 13);
+			this->label6->TabIndex = 16;
+			this->label6->Text = L"Search Student";
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(957, 554);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->markattendance);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
@@ -246,7 +330,8 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button1);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->HelpButton = true;
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"Form1";
@@ -256,41 +341,209 @@ namespace CppCLRWinFormsProject {
 			this->TopMost = true;
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->panel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
+		void LoadAttendance() {
+	}
 #pragma endregion
 	private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
+		for each (DataGridViewColumn ^ column in this->studentList->Columns) {
+			column->ReadOnly = true;
+		}
+		this->studentList->Columns["studentid"]->Width = 100;
+		this->studentList->Columns["name"]->Width = 250;
+		String^ exeDirectory = Application::StartupPath;
+		String^ filePath = System::IO::Path::Combine(exeDirectory, "attendance.csv");
+
+		// Ensure the attendance.txt file exists
+		if (!System::IO::File::Exists(filePath)) {
+			System::IO::File::Create(filePath)->Close();
+		}
+
+		System::IO::StreamReader^ reader = nullptr;
+		try {
+			reader = gcnew System::IO::StreamReader(filePath);
+			String^ line;
+			while ((line = reader->ReadLine()) != nullptr) {
+				array<String^>^ parts = line->Split(',');
+				if (parts->Length >= 3) {
+					String^ studentName = parts[1] + "," + parts[2];
+					studentList->Rows->Add(parts[0], studentName, parts[3], parts[4]);
+				}
+			}
+		}
+		catch (Exception^ ex) {
+			// Handle file read exceptions if necessary
+			MessageBox::Show("Error reading attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		finally {
+			if (reader != nullptr) {
+				reader->Close();
+			}
+			this->studentList->Sort(this->studentList->Columns["Time"], System::ComponentModel::ListSortDirection::Descending);
+		}
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+    private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			this->Cursor = Cursors::WaitCursor;
+
+			String^ studentId = textBox1->Text;
+
+			String^ url = "https://api.danengine.tech/v1/student/project?studentId=" + studentId;
+
+			System::Net::HttpWebRequest^ request = (System::Net::HttpWebRequest^)System::Net::WebRequest::Create(url);
+			request->Method = "GET";
+
+			System::Net::HttpWebResponse^ response = (System::Net::HttpWebResponse^)request->GetResponse();
+			System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(response->GetResponseStream());
+			String^ jsonResponse = reader->ReadToEnd();
+
+			reader->Close();
+			response->Close();
+
+			String^ studentIdStr = ExtractValue(jsonResponse, "\"id\":\"", "\"");
+			String^ studentName = ExtractValue(jsonResponse, "\"name\":\"", "\"");
+			String^ studentLevel = ExtractValue(jsonResponse, "\"level\":\"", "\"");
+			String^ studentProgram = ExtractValue(jsonResponse, "\"program\":\"", "\"");
+			String^ studentEmail = ExtractValue(jsonResponse, "\"email\":\"", "\"");
+
+			textBox2->Text = studentName;
+			textBox3->Text = studentProgram;
+			textBox4->Text = studentLevel;
+			textBox5->Text = studentEmail;
+
+		}
+		catch (Exception^ ex) {
+            MessageBox::Show(this, "Student Not Found", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error, MessageBoxDefaultButton::Button1);
+		}
+		finally {
+			// Change cursor back to default
+			this->Cursor = Cursors::Default;
+		}
+    }
+
+    String^ ExtractValue(String^ source, String^ startDelimiter, String^ endDelimiter) {
+		int startIndex = source->IndexOf(startDelimiter);
+		if (startIndex == -1) {
+		MessageBox::Show("Delimiter not found: " + startDelimiter, "Debug", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		return "N/A"; // Not found
+		}
+
+		startIndex += startDelimiter->Length;
+		int endIndex = source->IndexOf(endDelimiter, startIndex);
+
+		if (endIndex == -1) {
+		MessageBox::Show("End delimiter not found: " + endDelimiter, "Debug", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		return "N/A"; // Not found
+		}
+
+		return source->Substring(startIndex, endIndex - startIndex);
+    }
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		dragging = true;
-		offset = System::Drawing::Point(e->X, e->Y); // Get the mouse position relative to the PictureBox
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+	private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label6_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	}
+	private: System::Void markattendance_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (!String::IsNullOrEmpty(textBox2->Text) &&
+			!String::IsNullOrEmpty(textBox3->Text) &&
+			!String::IsNullOrEmpty(textBox4->Text) &&
+			!String::IsNullOrEmpty(textBox5->Text)) {
 
-	private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		if (dragging) {
-			// Calculate new form position
-			System::Drawing::Point newLocation = this->PointToScreen(System::Drawing::Point(e->X, e->Y));
-			newLocation.X -= offset.X;
-			newLocation.Y -= offset.Y;
-			this->Location = newLocation; // Set new form position
+			String^ studentId = textBox1->Text;
+			String^ studentName = textBox2->Text;
+			String^ currentDate = DateTime::Now.ToString("yyyy-MM-dd");
+			String^ currentTime = DateTime::Now.ToString("hh:mm:ss tt");
+
+			// Get the path of the directory where the executable is located
+			String^ exeDirectory = Application::StartupPath;
+			String^ filePath = System::IO::Path::Combine(exeDirectory, "attendance.csv");
+
+			// Ensure the attendance.txt file exists
+			if (!System::IO::File::Exists(filePath)) {
+				System::IO::File::Create(filePath)->Close();
+			}
+
+			// Read existing attendance records
+			bool alreadyMarked = false;
+			System::IO::StreamReader^ reader = nullptr;
+			try {
+				reader = gcnew System::IO::StreamReader(filePath);
+				String^ line;
+				while ((line = reader->ReadLine()) != nullptr) {
+					array<String^>^ parts = line->Split(',');
+					if (parts->Length >= 3 && parts[0] == studentId && parts[2] == currentDate) {
+						alreadyMarked = true;
+						break;
+					}
+				}
+			}
+			catch (Exception^ ex) {
+				// Handle file read exceptions if necessary
+				MessageBox::Show("Error reading attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			finally {
+				if (reader != nullptr) {
+					reader->Close();
+				}
+			}
+
+			if (alreadyMarked) {
+				MessageBox::Show("Attendance already marked for today", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			else {
+				// Write to attendance.txt
+				System::IO::StreamWriter^ writer = nullptr;
+				try {
+					writer = gcnew System::IO::StreamWriter(filePath, true);
+					writer->WriteLine(studentId + "," + studentName + "," + currentDate + "," + currentTime);
+					// Add to DataGridView after writing to file
+					studentList->Rows->Add(studentId, studentName, currentDate, currentTime);
+					this->studentList->Sort(this->studentList->Columns["Time"], System::ComponentModel::ListSortDirection::Descending);
+					MessageBox::Show("Attendance marked successfully", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show("Error writing to attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				}
+				finally {
+					if (writer != nullptr) {
+						writer->Close();
+					}
+				}
+			}
+		}
+		else {
+			MessageBox::Show("Please fill in all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
-	private: System::Void pictureBox1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		dragging = false;
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Environment::Exit(0);
-	}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+        private: System::Void Form1_HelpButtonClicked(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+            MessageBox::Show("Credits:\n\nDeveloped by: Group 2\n\nThis is Summative Assesment for IT101-L", "Credits", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            e->Cancel = true; // Prevent default help button behavior
+        }
+	private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		String^ searchText = textBox6->Text->ToLower();
+		for each (DataGridViewRow ^ row in studentList->Rows) {
+			bool isVisible = false;
+			for each (DataGridViewCell ^ cell in row->Cells) {
+				if (cell->Value != nullptr && cell->Value->ToString()->ToLower()->Contains(searchText)) {
+					isVisible = true;
+					break;
+				}
+			}
+			row->Visible = isVisible;
+		}
 	}
 };
 }

@@ -1,2 +1,6 @@
-﻿  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+﻿  CppCLR_WinFormsProject.cpp
+D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\Form1.h(420,21): warning C4101: 'ex': unreferenced local variable
+  (compiling source file '/CppCLR_WinFormsProject.cpp')
+  
+  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Attendancing Monitoring.vcxproj -> D:\Projects\attendance-monitoring-IT101-1L\x64\Release\attendance_x64.exe
