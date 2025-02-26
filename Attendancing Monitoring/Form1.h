@@ -18,9 +18,14 @@ namespace CppCLRWinFormsProject {
 		Form1(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			this->HelpButtonClicked += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::Form1_HelpButtonClicked);
+			try {
+				this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
+			}
+			catch (Exception^ ex) {
+                MessageBox::Show("Error loading image: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                this->Close();
+			}
 		}
 
 	protected:
@@ -57,6 +62,14 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
 	private: System::Windows::Forms::Button^ markattendance;
+	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::Label^ label6;
+
+
+
+
+	private: System::ComponentModel::IContainer^ components;
+
 
 
 
@@ -77,7 +90,7 @@ namespace CppCLRWinFormsProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -86,6 +99,7 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->studentList = (gcnew System::Windows::Forms::DataGridView());
@@ -105,6 +119,8 @@ namespace CppCLRWinFormsProject {
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->markattendance = (gcnew System::Windows::Forms::Button());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -115,7 +131,7 @@ namespace CppCLRWinFormsProject {
 			this->button1->Location = System::Drawing::Point(753, 119);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(192, 25);
-			this->button1->TabIndex = 0;
+			this->button1->TabIndex = 2;
 			this->button1->Text = L"Auto Fill";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
@@ -126,10 +142,12 @@ namespace CppCLRWinFormsProject {
 			this->panel1->Location = System::Drawing::Point(12, 106);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(585, 393);
-			this->panel1->TabIndex = 1;
+			this->panel1->TabIndex = 12;
 			// 
 			// studentList
 			// 
+			this->studentList->AllowUserToAddRows = false;
+			this->studentList->AllowUserToDeleteRows = false;
 			this->studentList->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->studentList->BackgroundColor = System::Drawing::Color::White;
 			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
@@ -140,6 +158,7 @@ namespace CppCLRWinFormsProject {
 			this->studentList->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->studentList->Location = System::Drawing::Point(0, 0);
 			this->studentList->Name = L"studentList";
+			this->studentList->ReadOnly = true;
 			this->studentList->RowHeadersVisible = false;
 			this->studentList->Size = System::Drawing::Size(585, 393);
 			this->studentList->TabIndex = 0;
@@ -149,28 +168,32 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->studentid->HeaderText = L"Student ID";
 			this->studentid->Name = L"studentid";
+			this->studentid->ReadOnly = true;
 			// 
 			// name
 			// 
 			this->name->HeaderText = L"Name";
 			this->name->Name = L"name";
+			this->name->ReadOnly = true;
 			// 
 			// Date
 			// 
 			this->Date->HeaderText = L"Date";
 			this->Date->Name = L"Date";
+			this->Date->ReadOnly = true;
 			// 
 			// Time
 			// 
 			this->Time->HeaderText = L"Time";
 			this->Time->Name = L"Time";
+			this->Time->ReadOnly = true;
 			// 
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(611, 122);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(136, 20);
-			this->textBox1->TabIndex = 2;
+			this->textBox1->TabIndex = 1;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Form1::textBox1_TextChanged);
 			// 
 			// label1
@@ -187,7 +210,7 @@ namespace CppCLRWinFormsProject {
 			this->textBox2->Location = System::Drawing::Point(611, 166);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(334, 20);
-			this->textBox2->TabIndex = 4;
+			this->textBox2->TabIndex = 3;
 			// 
 			// textBox3
 			// 
@@ -223,7 +246,6 @@ namespace CppCLRWinFormsProject {
 			this->label4->Size = System::Drawing::Size(32, 13);
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"Email";
-			this->label4->Click += gcnew System::EventHandler(this, &Form1::label4_Click);
 			// 
 			// label5
 			// 
@@ -239,42 +261,61 @@ namespace CppCLRWinFormsProject {
 			this->textBox4->Location = System::Drawing::Point(721, 258);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(100, 20);
-			this->textBox4->TabIndex = 10;
+			this->textBox4->TabIndex = 6;
 			// 
 			// textBox5
 			// 
 			this->textBox5->Location = System::Drawing::Point(611, 212);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(334, 20);
-			this->textBox5->TabIndex = 11;
+			this->textBox5->TabIndex = 4;
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Arrow;
-			this->pictureBox1->ImageLocation = L"MCM.png";
-			this->pictureBox1->Location = System::Drawing::Point(12, 9);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(278, 91);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 12;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
+            this->pictureBox1->ImageLocation = L"https://files.danengine.tech/attendance/mcm-ccis.png";
+            this->pictureBox1->Location = System::Drawing::Point(12, 9);
+            this->pictureBox1->Name = L"pictureBox1";
+            this->pictureBox1->Size = System::Drawing::Size(278, 91);
+            this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox1->TabIndex = 12;
+            this->pictureBox1->TabStop = false;
+            this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
 			// markattendance
 			// 
 			this->markattendance->Location = System::Drawing::Point(827, 249);
 			this->markattendance->Name = L"markattendance";
 			this->markattendance->Size = System::Drawing::Size(118, 36);
-			this->markattendance->TabIndex = 14;
+			this->markattendance->TabIndex = 7;
 			this->markattendance->Text = L"Mark Attendance";
 			this->markattendance->UseVisualStyleBackColor = true;
 			this->markattendance->Click += gcnew System::EventHandler(this, &Form1::markattendance_Click);
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(12, 522);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(175, 20);
+			this->textBox6->TabIndex = 15;
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &Form1::textBox6_TextChanged);
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(9, 506);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(81, 13);
+			this->label6->TabIndex = 16;
+			this->label6->Text = L"Search Student";
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(957, 554);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->markattendance);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->textBox5);
@@ -486,7 +527,23 @@ namespace CppCLRWinFormsProject {
 			MessageBox::Show("Please fill in all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
-	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+        private: System::Void Form1_HelpButtonClicked(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+            MessageBox::Show("Credits:\n\nDeveloped by: Group 2\n\nThis is Summative Assesment for IT101-L", "Credits", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            e->Cancel = true; // Prevent default help button behavior
+        }
+	private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		String^ searchText = textBox6->Text->ToLower();
+		for each (DataGridViewRow ^ row in studentList->Rows) {
+			bool isVisible = false;
+			for each (DataGridViewCell ^ cell in row->Cells) {
+				if (cell->Value != nullptr && cell->Value->ToString()->ToLower()->Contains(searchText)) {
+					isVisible = true;
+					break;
+				}
+			}
+			row->Visible = isVisible;
+		}
 	}
 };
 }
