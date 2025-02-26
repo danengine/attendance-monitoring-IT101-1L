@@ -290,7 +290,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		Environment::Exit(0);
 	}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 };
 }
