@@ -4,3 +4,4 @@ D:\Projects\IT\Attendancing Monitoring\Attendancing Monitoring\x64\Debug\Attenda
 D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Debug\Attendancing Monitoring.vcxproj.AssemblyReference.cache
 D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Debug\Attendancing_Monitoring.Form1.resources
 D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Debug\Attendancing Monitoring.vcxproj.GenerateResource.cache
+D:\Projects\attendance-monitoring-IT101-1L\Attendancing Monitoring\x64\Debug\Attendancing_Monitoring.Login.resources
