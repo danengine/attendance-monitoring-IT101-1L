@@ -44,7 +44,7 @@ namespace CppCLRWinFormsProject {
 			}
 		}
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Panel^ panel1;
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
@@ -60,14 +60,32 @@ namespace CppCLRWinFormsProject {
 	private: bool dragging = false;
 	private: System::Drawing::Point offset;
 
-	private: System::Windows::Forms::DataGridView^ studentList;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ studentid;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ name;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
+
+
+
+
+
 	private: System::Windows::Forms::Button^ markattendance;
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::DataGridView^ studentList;
+
+
+
+
+	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ studentid;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
+
+
+
+
+
+
 
 
 
@@ -104,12 +122,6 @@ namespace CppCLRWinFormsProject {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->studentList = (gcnew System::Windows::Forms::DataGridView());
-			this->studentid = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -124,14 +136,21 @@ namespace CppCLRWinFormsProject {
 			this->markattendance = (gcnew System::Windows::Forms::Button());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->BeginInit();
+			this->studentList = (gcnew System::Windows::Forms::DataGridView());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->studentid = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(753, 119);
+			this->button1->Location = System::Drawing::Point(753, 163);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(192, 25);
 			this->button1->TabIndex = 2;
@@ -139,61 +158,9 @@ namespace CppCLRWinFormsProject {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
-			// panel1
-			// 
-			this->panel1->Controls->Add(this->studentList);
-			this->panel1->Location = System::Drawing::Point(12, 106);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(585, 393);
-			this->panel1->TabIndex = 12;
-			// 
-			// studentList
-			// 
-			this->studentList->AllowUserToAddRows = false;
-			this->studentList->AllowUserToDeleteRows = false;
-			this->studentList->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->studentList->BackgroundColor = System::Drawing::Color::White;
-			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->studentList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->studentid,
-					this->name, this->Date, this->Time
-			});
-			this->studentList->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->studentList->Location = System::Drawing::Point(0, 0);
-			this->studentList->Name = L"studentList";
-			this->studentList->ReadOnly = true;
-			this->studentList->RowHeadersVisible = false;
-			this->studentList->Size = System::Drawing::Size(585, 393);
-			this->studentList->TabIndex = 0;
-			this->studentList->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellContentClick);
-			// 
-			// studentid
-			// 
-			this->studentid->HeaderText = L"Student ID";
-			this->studentid->Name = L"studentid";
-			this->studentid->ReadOnly = true;
-			// 
-			// name
-			// 
-			this->name->HeaderText = L"Name";
-			this->name->Name = L"name";
-			this->name->ReadOnly = true;
-			// 
-			// Date
-			// 
-			this->Date->HeaderText = L"Date";
-			this->Date->Name = L"Date";
-			this->Date->ReadOnly = true;
-			// 
-			// Time
-			// 
-			this->Time->HeaderText = L"Time";
-			this->Time->Name = L"Time";
-			this->Time->ReadOnly = true;
-			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(611, 122);
+			this->textBox1->Location = System::Drawing::Point(611, 166);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(136, 20);
 			this->textBox1->TabIndex = 1;
@@ -202,7 +169,7 @@ namespace CppCLRWinFormsProject {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(608, 106);
+			this->label1->Location = System::Drawing::Point(608, 150);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(58, 13);
 			this->label1->TabIndex = 3;
@@ -210,14 +177,14 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(611, 166);
+			this->textBox2->Location = System::Drawing::Point(611, 210);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(334, 20);
 			this->textBox2->TabIndex = 3;
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(612, 258);
+			this->textBox3->Location = System::Drawing::Point(612, 302);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(100, 20);
 			this->textBox3->TabIndex = 5;
@@ -225,7 +192,7 @@ namespace CppCLRWinFormsProject {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(608, 150);
+			this->label2->Location = System::Drawing::Point(608, 194);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(35, 13);
 			this->label2->TabIndex = 6;
@@ -235,7 +202,7 @@ namespace CppCLRWinFormsProject {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(609, 242);
+			this->label3->Location = System::Drawing::Point(609, 286);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(46, 13);
 			this->label3->TabIndex = 7;
@@ -244,7 +211,7 @@ namespace CppCLRWinFormsProject {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(609, 196);
+			this->label4->Location = System::Drawing::Point(609, 240);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(32, 13);
 			this->label4->TabIndex = 8;
@@ -253,7 +220,7 @@ namespace CppCLRWinFormsProject {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(719, 242);
+			this->label5->Location = System::Drawing::Point(719, 286);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(29, 13);
 			this->label5->TabIndex = 9;
@@ -261,14 +228,14 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(721, 258);
+			this->textBox4->Location = System::Drawing::Point(721, 302);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(100, 20);
 			this->textBox4->TabIndex = 6;
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(611, 212);
+			this->textBox5->Location = System::Drawing::Point(611, 256);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(334, 20);
 			this->textBox5->TabIndex = 4;
@@ -287,7 +254,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// markattendance
 			// 
-			this->markattendance->Location = System::Drawing::Point(827, 249);
+			this->markattendance->Location = System::Drawing::Point(827, 293);
 			this->markattendance->Name = L"markattendance";
 			this->markattendance->Size = System::Drawing::Size(118, 36);
 			this->markattendance->TabIndex = 7;
@@ -297,26 +264,110 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(12, 522);
+			this->textBox6->Location = System::Drawing::Point(12, 124);
 			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(175, 20);
+			this->textBox6->Size = System::Drawing::Size(278, 20);
 			this->textBox6->TabIndex = 15;
 			this->textBox6->TextChanged += gcnew System::EventHandler(this, &Form1::textBox6_TextChanged);
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(9, 506);
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(9, 105);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(81, 13);
+			this->label6->Size = System::Drawing::Size(98, 16);
 			this->label6->TabIndex = 16;
 			this->label6->Text = L"Search Student";
+			this->label6->Click += gcnew System::EventHandler(this, &Form1::label6_Click_2);
+			// 
+			// studentList
+			// 
+			this->studentList->AllowUserToAddRows = false;
+			this->studentList->AllowUserToDeleteRows = false;
+			this->studentList->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->studentList->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->studentList->BackgroundColor = System::Drawing::Color::White;
+			this->studentList->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->studentList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+				this->studentid,
+					this->name, this->Column1, this->Column2, this->Date, this->Time
+			});
+			this->studentList->Location = System::Drawing::Point(12, 150);
+			this->studentList->Name = L"studentList";
+			this->studentList->ReadOnly = true;
+			this->studentList->RowHeadersVisible = false;
+			this->studentList->Size = System::Drawing::Size(585, 390);
+			this->studentList->TabIndex = 0;
+			this->studentList->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellContentClick);
+			// 
+			// dateTimePicker1
+			// 
+			this->dateTimePicker1->CalendarFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->dateTimePicker1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->dateTimePicker1->Location = System::Drawing::Point(650, 74);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(276, 26);
+			this->dateTimePicker1->TabIndex = 17;
+			// 
+			// studentid
+			// 
+			this->studentid->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->studentid->FillWeight = 60;
+			this->studentid->HeaderText = L"Student ID";
+			this->studentid->Name = L"studentid";
+			this->studentid->ReadOnly = true;
+			// 
+			// name
+			// 
+			this->name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->name->HeaderText = L"Name";
+			this->name->Name = L"name";
+			this->name->ReadOnly = true;
+			// 
+			// Column1
+			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column1->FillWeight = 50;
+			this->Column1->HeaderText = L"Program";
+			this->Column1->Name = L"Column1";
+			this->Column1->ReadOnly = true;
+			// 
+			// Column2
+			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column2->FillWeight = 40;
+			this->Column2->HeaderText = L"Year";
+			this->Column2->Name = L"Column2";
+			this->Column2->ReadOnly = true;
+			// 
+			// Date
+			// 
+			this->Date->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Date->FillWeight = 60;
+			this->Date->HeaderText = L"Date";
+			this->Date->Name = L"Date";
+			this->Date->ReadOnly = true;
+			// 
+			// Time
+			// 
+			this->Time->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Time->FillWeight = 60;
+			this->Time->HeaderText = L"Time";
+			this->Time->Name = L"Time";
+			this->Time->ReadOnly = true;
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(957, 554);
+			this->Controls->Add(this->dateTimePicker1);
+			this->Controls->Add(this->studentList);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->markattendance);
@@ -331,7 +382,6 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->HelpButton = true;
@@ -340,9 +390,8 @@ namespace CppCLRWinFormsProject {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Attendance Monitoring";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
-			this->panel1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -544,5 +593,7 @@ namespace CppCLRWinFormsProject {
 			row->Visible = isVisible;
 		}
 	}
+private: System::Void label6_Click_2(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
