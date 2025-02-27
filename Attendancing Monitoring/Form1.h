@@ -90,6 +90,78 @@ namespace CppCLRWinFormsProject {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -121,6 +193,11 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -137,13 +214,13 @@ namespace CppCLRWinFormsProject {
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->studentList = (gcnew System::Windows::Forms::DataGridView());
-			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->studentid = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->BeginInit();
 			this->SuspendLayout();
@@ -160,6 +237,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox1
 			// 
+			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox1->Location = System::Drawing::Point(611, 166);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(136, 20);
@@ -177,6 +255,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox2
 			// 
+			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox2->Location = System::Drawing::Point(611, 210);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(334, 20);
@@ -184,6 +263,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox3
 			// 
+			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox3->Location = System::Drawing::Point(612, 302);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(100, 20);
@@ -228,6 +308,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox4
 			// 
+			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox4->Location = System::Drawing::Point(721, 302);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(100, 20);
@@ -235,6 +316,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox5
 			// 
+			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox5->Location = System::Drawing::Point(611, 256);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(334, 20);
@@ -286,22 +368,101 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->studentList->AllowUserToAddRows = false;
 			this->studentList->AllowUserToDeleteRows = false;
+			this->studentList->AllowUserToResizeColumns = false;
+			this->studentList->AllowUserToResizeRows = false;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::LightGray;
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::White;
+			this->studentList->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->studentList->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->studentList->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->studentList->BackgroundColor = System::Drawing::Color::White;
-			this->studentList->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->studentList->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+			this->studentList->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->studentList->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->studentList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->studentid,
 					this->name, this->Column1, this->Column2, this->Date, this->Time
 			});
+			this->studentList->Cursor = System::Windows::Forms::Cursors::Arrow;
+			this->studentList->EnableHeadersVisualStyles = false;
+			this->studentList->GridColor = System::Drawing::SystemColors::ActiveBorder;
 			this->studentList->Location = System::Drawing::Point(12, 150);
 			this->studentList->Name = L"studentList";
 			this->studentList->ReadOnly = true;
+			this->studentList->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
 			this->studentList->RowHeadersVisible = false;
 			this->studentList->Size = System::Drawing::Size(585, 390);
 			this->studentList->TabIndex = 0;
 			this->studentList->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellContentClick);
+			// 
+			// studentid
+			// 
+			this->studentid->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			this->studentid->DefaultCellStyle = dataGridViewCellStyle3;
+			this->studentid->FillWeight = 60;
+			this->studentid->HeaderText = L"Student ID";
+			this->studentid->Name = L"studentid";
+			this->studentid->ReadOnly = true;
+			this->studentid->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// name
+			// 
+			this->name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->name->HeaderText = L"Name";
+			this->name->Name = L"name";
+			this->name->ReadOnly = true;
+			this->name->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// Column1
+			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			this->Column1->DefaultCellStyle = dataGridViewCellStyle4;
+			this->Column1->FillWeight = 50;
+			this->Column1->HeaderText = L"Program";
+			this->Column1->Name = L"Column1";
+			this->Column1->ReadOnly = true;
+			this->Column1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// Column2
+			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			this->Column2->DefaultCellStyle = dataGridViewCellStyle5;
+			this->Column2->FillWeight = 40;
+			this->Column2->HeaderText = L"Year";
+			this->Column2->Name = L"Column2";
+			this->Column2->ReadOnly = true;
+			this->Column2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// Date
+			// 
+			this->Date->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Date->FillWeight = 60;
+			this->Date->HeaderText = L"Date";
+			this->Date->Name = L"Date";
+			this->Date->ReadOnly = true;
+			this->Date->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// Time
+			// 
+			this->Time->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Time->FillWeight = 60;
+			this->Time->HeaderText = L"Time";
+			this->Time->Name = L"Time";
+			this->Time->ReadOnly = true;
+			this->Time->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			// 
 			// dateTimePicker1
 			// 
@@ -313,53 +474,6 @@ namespace CppCLRWinFormsProject {
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(276, 26);
 			this->dateTimePicker1->TabIndex = 17;
-			// 
-			// studentid
-			// 
-			this->studentid->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->studentid->FillWeight = 60;
-			this->studentid->HeaderText = L"Student ID";
-			this->studentid->Name = L"studentid";
-			this->studentid->ReadOnly = true;
-			// 
-			// name
-			// 
-			this->name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->name->HeaderText = L"Name";
-			this->name->Name = L"name";
-			this->name->ReadOnly = true;
-			// 
-			// Column1
-			// 
-			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column1->FillWeight = 50;
-			this->Column1->HeaderText = L"Program";
-			this->Column1->Name = L"Column1";
-			this->Column1->ReadOnly = true;
-			// 
-			// Column2
-			// 
-			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->FillWeight = 40;
-			this->Column2->HeaderText = L"Year";
-			this->Column2->Name = L"Column2";
-			this->Column2->ReadOnly = true;
-			// 
-			// Date
-			// 
-			this->Date->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Date->FillWeight = 60;
-			this->Date->HeaderText = L"Date";
-			this->Date->Name = L"Date";
-			this->Date->ReadOnly = true;
-			// 
-			// Time
-			// 
-			this->Time->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Time->FillWeight = 60;
-			this->Time->HeaderText = L"Time";
-			this->Time->Name = L"Time";
-			this->Time->ReadOnly = true;
 			// 
 			// Form1
 			// 
