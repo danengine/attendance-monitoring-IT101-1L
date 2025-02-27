@@ -15,18 +15,22 @@ namespace CppCLRWinFormsProject {
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
-		Form1(void)
-		{
-			InitializeComponent();
-			this->HelpButtonClicked += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::Form1_HelpButtonClicked);
-			try {
-				this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
-			}
-			catch (Exception^ ex) {
-                MessageBox::Show("Error loading image: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+        Form1(void)
+        {
+        InitializeComponent();
+        this->HelpButtonClicked += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::Form1_HelpButtonClicked);
+        try {
+			this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
+			System::Net::WebClient^ client = gcnew System::Net::WebClient();
+			array<Byte>^ iconData = client->DownloadData("https://files.danengine.tech/attendance/app.ico");
+			System::IO::MemoryStream^ iconStream = gcnew System::IO::MemoryStream(iconData);
+			this->Icon = gcnew System::Drawing::Icon(iconStream);
+        }
+        catch (Exception^ ex) {
+                MessageBox::Show("Error loading image or icon: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
                 this->Close();
-			}
-		}
+        }
+        }
 
 	protected:
 		/// <summary>
@@ -99,7 +103,6 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->studentList = (gcnew System::Windows::Forms::DataGridView());
@@ -273,14 +276,14 @@ namespace CppCLRWinFormsProject {
 			// pictureBox1
 			// 
 			this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Arrow;
-            this->pictureBox1->ImageLocation = L"https://files.danengine.tech/attendance/mcm-ccis.png";
-            this->pictureBox1->Location = System::Drawing::Point(12, 9);
-            this->pictureBox1->Name = L"pictureBox1";
-            this->pictureBox1->Size = System::Drawing::Size(278, 91);
-            this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox1->TabIndex = 12;
-            this->pictureBox1->TabStop = false;
-            this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
+			this->pictureBox1->ImageLocation = L"https://files.danengine.tech/attendance/mcm-ccis.png";
+			this->pictureBox1->Location = System::Drawing::Point(12, 9);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(278, 91);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 12;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
 			// markattendance
 			// 
@@ -333,12 +336,9 @@ namespace CppCLRWinFormsProject {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->HelpButton = true;
 			this->MaximizeBox = false;
-			this->MinimizeBox = false;
 			this->Name = L"Form1";
-			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Attendance Monitoring";
-			this->TopMost = true;
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->panel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->studentList))->EndInit();
@@ -360,31 +360,30 @@ namespace CppCLRWinFormsProject {
 		String^ filePath = System::IO::Path::Combine(exeDirectory, "attendance.csv");
 
 		// Ensure the attendance.txt file exists
-		if (!System::IO::File::Exists(filePath)) {
-			System::IO::File::Create(filePath)->Close();
-		}
-
-		System::IO::StreamReader^ reader = nullptr;
-		try {
-			reader = gcnew System::IO::StreamReader(filePath);
-			String^ line;
-			while ((line = reader->ReadLine()) != nullptr) {
-				array<String^>^ parts = line->Split(',');
-				if (parts->Length >= 3) {
-					String^ studentName = parts[1] + "," + parts[2];
-					studentList->Rows->Add(parts[0], studentName, parts[3], parts[4]);
+		if (System::IO::File::Exists(filePath)) {
+			System::IO::StreamReader^ reader = nullptr;
+			try {
+				reader = gcnew System::IO::StreamReader(filePath);
+				String^ line;
+				while ((line = reader->ReadLine()) != nullptr) {
+					array<String^>^ parts = line->Split(',');
+					if (parts->Length >= 3) {
+						String^ studentName = parts[1] + "," + parts[2];
+						studentList->Rows->Add(parts[0], studentName, parts[3], parts[4]);
+					}
 				}
 			}
-		}
-		catch (Exception^ ex) {
-			// Handle file read exceptions if necessary
-			MessageBox::Show("Error reading attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
-		finally {
-			if (reader != nullptr) {
-				reader->Close();
+			catch (Exception^ ex) {
+				// Handle file read exceptions if necessary
+				MessageBox::Show("Error reading attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				this->Close();
 			}
-			this->studentList->Sort(this->studentList->Columns["Time"], System::ComponentModel::ListSortDirection::Descending);
+			finally {
+				if (reader != nullptr) {
+					reader->Close();
+				}
+				this->studentList->Sort(this->studentList->Columns["Time"], System::ComponentModel::ListSortDirection::Descending);
+			}
 		}
 	}
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
