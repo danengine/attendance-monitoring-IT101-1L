@@ -17,19 +17,18 @@ namespace CppCLRWinFormsProject {
 	public:
         Form1(void)
         {
-        InitializeComponent();
-        this->HelpButtonClicked += gcnew System::ComponentModel::CancelEventHandler(this, &Form1::Form1_HelpButtonClicked);
-        try {
-			this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
-			System::Net::WebClient^ client = gcnew System::Net::WebClient();
-			array<Byte>^ iconData = client->DownloadData("https://files.danengine.tech/attendance/app.ico");
-			System::IO::MemoryStream^ iconStream = gcnew System::IO::MemoryStream(iconData);
-			this->Icon = gcnew System::Drawing::Icon(iconStream);
-        }
-        catch (Exception^ ex) {
-                MessageBox::Show("Error loading image or icon: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-                this->Close();
-        }
+			InitializeComponent();
+			try {
+				this->pictureBox1->Load("https://files.danengine.tech/attendance/mcm-ccis.png");
+				System::Net::WebClient^ client = gcnew System::Net::WebClient();
+				array<Byte>^ iconData = client->DownloadData("https://files.danengine.tech/attendance/app.ico");
+				System::IO::MemoryStream^ iconStream = gcnew System::IO::MemoryStream(iconData);
+				this->Icon = gcnew System::Drawing::Icon(iconStream);
+			}
+			catch (Exception^ ex) {
+					MessageBox::Show("Error loading image or icon: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					this->Close();
+			}
         }
 
 	protected:
@@ -44,7 +43,6 @@ namespace CppCLRWinFormsProject {
 			}
 		}
 	private: System::Windows::Forms::Button^ button1;
-
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
@@ -54,32 +52,15 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ textBox4;
-
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: bool dragging = false;
 	private: System::Drawing::Point offset;
-
-
-
-
-
-
 	private: System::Windows::Forms::Button^ markattendance;
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::DataGridView^ studentList;
-
-
-
-
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ studentid;
@@ -89,110 +70,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^ components;
-
-
-
-
-
-
-
-
-
 	protected:
 
 	protected:
@@ -214,15 +92,15 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle46 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle47 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle53 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle54 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle48 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle49 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle50 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle51 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle52 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -420,61 +298,61 @@ namespace CppCLRWinFormsProject {
 			this->studentList->AllowUserToDeleteRows = false;
 			this->studentList->AllowUserToResizeColumns = false;
 			this->studentList->AllowUserToResizeRows = false;
-			dataGridViewCellStyle46->BackColor = System::Drawing::Color::LightGray;
-			dataGridViewCellStyle46->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle46->SelectionForeColor = System::Drawing::Color::White;
-			this->studentList->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::LightGray;
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::White;
+			this->studentList->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->studentList->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->studentList->BackgroundColor = System::Drawing::Color::White;
 			this->studentList->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			this->studentList->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
-			dataGridViewCellStyle47->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle47->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle47->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
-			dataGridViewCellStyle47->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle47->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle47->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle47->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->studentList->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->studentList->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->studentList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->studentList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->studentid,
 					this->name, this->Column1, this->Column2, this->Date, this->Time
 			});
 			this->studentList->Cursor = System::Windows::Forms::Cursors::Arrow;
-			dataGridViewCellStyle53->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle53->BackColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle53->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
-			dataGridViewCellStyle53->ForeColor = System::Drawing::SystemColors::ControlText;
-			dataGridViewCellStyle53->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle53->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle53->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->studentList->DefaultCellStyle = dataGridViewCellStyle53;
+			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle8->BackColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			dataGridViewCellStyle8->ForeColor = System::Drawing::SystemColors::ControlText;
+			dataGridViewCellStyle8->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle8->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle8->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->studentList->DefaultCellStyle = dataGridViewCellStyle8;
 			this->studentList->EnableHeadersVisualStyles = false;
 			this->studentList->GridColor = System::Drawing::SystemColors::ActiveBorder;
 			this->studentList->Location = System::Drawing::Point(12, 150);
 			this->studentList->Name = L"studentList";
 			this->studentList->ReadOnly = true;
 			this->studentList->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
-			dataGridViewCellStyle54->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle54->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle54->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.25F));
-			dataGridViewCellStyle54->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle54->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle54->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle54->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->studentList->RowHeadersDefaultCellStyle = dataGridViewCellStyle54;
+			dataGridViewCellStyle9->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle9->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.25F));
+			dataGridViewCellStyle9->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle9->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->studentList->RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
 			this->studentList->RowHeadersVisible = false;
-			this->studentList->Size = System::Drawing::Size(585, 390);
+			this->studentList->Size = System::Drawing::Size(585, 379);
 			this->studentList->TabIndex = 0;
 			this->studentList->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellContentClick);
 			// 
 			// studentid
 			// 
 			this->studentid->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			dataGridViewCellStyle48->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle48->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			this->studentid->DefaultCellStyle = dataGridViewCellStyle48;
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			this->studentid->DefaultCellStyle = dataGridViewCellStyle3;
 			this->studentid->FillWeight = 60;
 			this->studentid->HeaderText = L"Student ID";
 			this->studentid->Name = L"studentid";
@@ -492,8 +370,8 @@ namespace CppCLRWinFormsProject {
 			// Column1
 			// 
 			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			dataGridViewCellStyle49->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			this->Column1->DefaultCellStyle = dataGridViewCellStyle49;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			this->Column1->DefaultCellStyle = dataGridViewCellStyle4;
 			this->Column1->FillWeight = 50;
 			this->Column1->HeaderText = L"Program";
 			this->Column1->Name = L"Column1";
@@ -503,8 +381,8 @@ namespace CppCLRWinFormsProject {
 			// Column2
 			// 
 			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			dataGridViewCellStyle50->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			this->Column2->DefaultCellStyle = dataGridViewCellStyle50;
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			this->Column2->DefaultCellStyle = dataGridViewCellStyle5;
 			this->Column2->FillWeight = 40;
 			this->Column2->HeaderText = L"Year";
 			this->Column2->Name = L"Column2";
@@ -514,9 +392,9 @@ namespace CppCLRWinFormsProject {
 			// Date
 			// 
 			this->Date->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			dataGridViewCellStyle51->Format = L"M";
-			dataGridViewCellStyle51->NullValue = nullptr;
-			this->Date->DefaultCellStyle = dataGridViewCellStyle51;
+			dataGridViewCellStyle6->Format = L"M";
+			dataGridViewCellStyle6->NullValue = nullptr;
+			this->Date->DefaultCellStyle = dataGridViewCellStyle6;
 			this->Date->FillWeight = 60;
 			this->Date->HeaderText = L"Date";
 			this->Date->Name = L"Date";
@@ -526,9 +404,9 @@ namespace CppCLRWinFormsProject {
 			// Time
 			// 
 			this->Time->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			dataGridViewCellStyle52->Format = L"T";
-			dataGridViewCellStyle52->NullValue = nullptr;
-			this->Time->DefaultCellStyle = dataGridViewCellStyle52;
+			dataGridViewCellStyle7->Format = L"T";
+			dataGridViewCellStyle7->NullValue = nullptr;
+			this->Time->DefaultCellStyle = dataGridViewCellStyle7;
 			this->Time->FillWeight = 60;
 			this->Time->HeaderText = L"Time";
 			this->Time->Name = L"Time";
@@ -593,7 +471,7 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->HelpButton = true;
+			this->HelpButton = false;
 			this->MaximizeBox = false;
 			this->Name = L"Form1";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -617,8 +495,6 @@ namespace CppCLRWinFormsProject {
 		this->studentList->Columns["name"]->Width = 250;
 		String^ exeDirectory = Application::StartupPath;
 		String^ filePath = System::IO::Path::Combine(exeDirectory, "attendance.csv");
-
-		// Ensure the attendance.txt file exists
 		if (System::IO::File::Exists(filePath)) {
 			System::IO::StreamReader^ reader = nullptr;
 			try {
@@ -633,7 +509,6 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 			catch (Exception^ ex) {
-				// Handle file read exceptions if necessary
 				MessageBox::Show("Error reading attendance file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 				this->Close();
 			}
@@ -742,7 +617,7 @@ namespace CppCLRWinFormsProject {
 				String^ line;
 				while ((line = reader->ReadLine()) != nullptr) {
 					array<String^>^ parts = line->Split(',');
-					if (parts->Length >= 3 && parts[0] == studentId && parts[2] == currentDate) {
+					if (parts[0] == studentId && parts[5] == currentDate) {
 						alreadyMarked = true;
 						break;
 					}
@@ -785,11 +660,6 @@ namespace CppCLRWinFormsProject {
 			MessageBox::Show("Please fill in all fields", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
-
-        private: System::Void Form1_HelpButtonClicked(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
-            MessageBox::Show("Credits:\n\nDeveloped by: Group 2\n\nThis is Summative Assesment for IT101-L", "Credits", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            e->Cancel = true; // Prevent default help button behavior
-        }
 	private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		String^ searchText = textBox6->Text->ToLower();
 		for each (DataGridViewRow ^ row in studentList->Rows) {
@@ -804,6 +674,7 @@ namespace CppCLRWinFormsProject {
 		}
 	}
 private: System::Void label6_Click_2(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 };
 }
